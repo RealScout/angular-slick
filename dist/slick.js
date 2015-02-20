@@ -105,12 +105,14 @@ angular.module('slick', []).directive('slick', [
 
             if ( isInitialized )
             {
+                $(element).hide();
                 $(element).slickRemove();
                 $(element).removeClass('slick-initialized slick-slider');
                 $(element).find('.slick-list').remove();
             }
 
              initializeSlick();
+             $(element).fadeIn();
              return isInitialized = true;
           });
         } else {
