@@ -22,11 +22,11 @@ angular.module('slick', []).directive('slick', [
         infinite: '@',
         lazyLoad: '@',
         onBeforeChange: '@',
-        onAfterChange: '&',
+        onAfterChange: '@',
         onInit: '@',
         onReInit: '@',
         pauseOnHover: '@',
-        responsive: '&',
+        responsive: '@',
         slide: '@',
         slidesToShow: '@',
         slidesToScroll: '@',
@@ -61,8 +61,8 @@ angular.module('slick', []).directive('slick', [
               lazyLoad: scope.lazyLoad || 'ondemand',
               onBeforeChange: scope.onBeforeChange || null,
               onAfterChange: function (sl, index) {
-                if (attrs.onAfterChange) {
-                  scope.onAfterChange().call();
+                if (scope.onAfterChange) {
+                  scope.onAfterChange();
                 }
                 if (currentIndex != null) {
                   return scope.$apply(function () {
