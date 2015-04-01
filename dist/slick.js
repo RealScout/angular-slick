@@ -26,7 +26,7 @@ angular.module('slick', []).directive('slick', [
         onInit: '@',
         onReInit: '@',
         pauseOnHover: '@',
-        responsive: '@',
+        responsive: '&',
         slide: '@',
         slidesToShow: '@',
         slidesToScroll: '@',
