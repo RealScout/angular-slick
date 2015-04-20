@@ -110,7 +110,7 @@ angular.module('slick', []).directive('slick', [
                 $(element).slickRemove();
                 $(element).removeClass('slick-initialized slick-slider');
                 $(element).find('.slick-list').remove();
-                if (scope.resetIndexOnReInit !== null && scope.resetOnReInit !== false) {
+                if (scope.resetIndexOnReInit !== null && scope.resetIndexOnReInit !== false) {
                   scope.currentIndex = 0;
                 }
             }
