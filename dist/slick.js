@@ -26,7 +26,6 @@ angular.module('slick', []).directive('slick', [
         onInit: '@',
         onReInit: '@',
         pauseOnHover: '@',
-        resetIndexOnReInit: '@',
         responsive: '&',
         slide: '@',
         slidesToShow: '@',
@@ -35,7 +34,9 @@ angular.module('slick', []).directive('slick', [
         swipe: '@',
         touchMove: '@',
         touchThreshold: '@',
-        vertical: '@'
+        vertical: '@',
+        useCSS: '@',
+        variableWidth: '@'
       },
       link: function (scope, element, attrs) {
         var initializeSlick, isInitialized;
@@ -90,6 +91,8 @@ angular.module('slick', []).directive('slick', [
               swipe: scope.swipe !== 'false',
               touchMove: scope.touchMove !== 'false',
               touchThreshold: scope.touchThreshold ? parseInt(scope.touchThreshold, 10) : 5,
+              useCSS: scope.useCSS !== 'false',
+              variableWidth: scope.variableWidth === 'true',
               vertical: scope.vertical === 'true'
             });
             return scope.$watch('currentIndex', function (newVal, oldVal) {
@@ -102,22 +105,10 @@ angular.module('slick', []).directive('slick', [
         if (scope.initOnload) {
           isInitialized = false;
           return scope.$watch('data', function (newVal, oldVal) {
-            if(newVal == null) return false;
-
-            if ( isInitialized )
-            {
-                $(element).hide();
-                $(element).slickRemove();
-                $(element).removeClass('slick-initialized slick-slider');
-                $(element).find('.slick-list').remove();
-                if (scope.resetIndexOnReInit !== null && scope.resetIndexOnReInit !== false) {
-                  scope.currentIndex = 0;
-                }
+            if (newVal != null && !isInitialized) {
+              initializeSlick();
+              return isInitialized = true;
             }
-
-             initializeSlick();
-             $(element).fadeIn();
-             return isInitialized = true;
           });
         } else {
           return initializeSlick();

@@ -34,6 +34,8 @@ angular.module('slick', [])
       touchMove: "@"
       touchThreshold: "@"
       vertical: "@"
+      useCSS: '@'
+      variableWidth: '@'
     link: (scope, element, attrs) ->
 
       initializeSlick = () ->
@@ -77,6 +79,8 @@ angular.module('slick', [])
             swipe: scope.swipe isnt "false"
             touchMove: scope.touchMove isnt "false"
             touchThreshold: if scope.touchThreshold then parseInt(scope.touchThreshold, 10) else 5
+            useCSS: scope.useCSS isnt 'false'
+            variableWidth: scope.variableWidth is 'true'
             vertical: scope.vertical is "true"
 
           scope.$watch("currentIndex", (newVal, oldVal) ->
