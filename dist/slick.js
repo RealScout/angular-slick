@@ -108,6 +108,11 @@ angular.module('slick', []).directive('slick', [
             if (newVal != null && !isInitialized) {
               initializeSlick();
               return isInitialized = true;
+            } else if (newVal) {
+              $(element).removeClass('slick-initialized');
+              return $timeout(function () {
+                return $(element).slick('init');
+              });
             }
           });
         } else {

@@ -95,6 +95,12 @@ angular.module('slick', [])
           if newVal? and not isInitialized
             initializeSlick()
             isInitialized = true
+          else if newVal
+            $(element).removeClass('slick-initialized')
+
+            $timeout(() ->
+              $(element).slick('init')
+            )
         )
       else
         initializeSlick()
