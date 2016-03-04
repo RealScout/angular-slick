@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "angular": "~1.2.6",
-    "slick-carousel": "~1.5.8"
+    "slick-carousel": "~1.5.9"
   },
   "author": {
     "name": "Vasyl Stanislavchuk"
